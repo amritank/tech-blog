@@ -1,0 +1,37 @@
+[
+    {
+        "comment": "Very nice blog",
+        "BlogId": 1,
+        "UserId": 2
+    },
+    {
+        "comment": "Awesome",
+        "BlogId": 2,
+        "UserId": 1
+    },
+    {
+        "comment": "Too good",
+        "BlogId": 3,
+        "UserId": 3
+    },
+    {
+        "comment": "Too long but very nice",
+        "BlogId": 3,
+        "UserId": 2
+    },
+    {
+        "comment": "Nice",
+        "BlogId": 4,
+        "UserId": 2
+    },
+    {
+        "comment": "Well explained and beautifully written.",
+        "BlogId": 4,
+        "UserId": 1
+    },
+    {
+        "comment": "Awesome",
+        "BlogId": 4,
+        "UserId": 3
+    }
+]

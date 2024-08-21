@@ -1,0 +1,105 @@
+<header>
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark" style="background-color: #2a9d8f;">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">The Tech Blog</a>
+            <div id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/dashboard">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+<div class="container" id="BlogDetailsContainer">
+    {{#each result.data as |d|}}
+    <div class="card mt-4" style="background-color: #e9d8a6; border: 2px solid black;">
+        <div class="card-header  text-white" style="background-color: #2a9d8f;">
+            <div class="d-flex justify-content-between">
+                <h5 class="card-title ">{{d.title}}</h5>
+                <h6 class="card-subtitle mb-2 fw-lighter"><small>Posted by {{d.blogger }} on {{d.createTime}}</small>
+                </h6>
+            </div>
+        </div>
+        <div class="card-body">
+            <p class="card-text">{{d.text}}</p>
+            <div class="d-flex gap-2">
+                <i id="editBtn-{{@index}}" data-bs-toggle="modal" data-bs-target="#editPostModal"
+                    data-blog-id={{d.BlogId}} class="edit-button fa-regular fa-pen-to-square"></i>
+            </div>
+            <a class="text-dark text-muted" data-bs-toggle="collapse" href="#collapseOne-{{@index}}" role="button"
+                aria-expanded="false" aria-controls="collapseOne-{{@index}}" style="text-decoration: None">
+                <small>View all comments</small>
+            </a>
+            <div id="collapseOne-{{@index}}" class="text-white collapse">
+                <ul class="list-group list-group-flush ">
+                    <li class="list-group-item  text-white fw-lighter" style="background-color: #264653">
+                        {{#each d.comments as |c|}}
+                        <p style="font-size: 0.8rem">
+                            <small><b>{{c.commenter}}</b><style="font-size: 0.5rem"> {{c.createTime}}</style>
+                            </small><br>
+                            <small>{{c.comment}}</small>
+                        </p>
+                        {{/each}}
+                        <form class="addCommentForm">
+                            <div class="form-group">
+                                <textarea class="form-control" id="newcomment-{{d.BlogId}}" rows="2"></textarea>
+                                <label style="font-size: 0.8rem; font-weight:bolder" id="alertMsg-{{d.BlogId}}"
+                                    hidden></label>
+                                <div>
+                                    <button type="submit" id="commentBtn" data-blog-id={{d.BlogId}}
+                                        data-user-id={{d.UserId}} class="btn btn-light mt-3 text-white"
+                                        style="background-color: #2a9d8f; border: none; font-size: 0.8rem">Add
+                                        Comment</button>
+                                </div>
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    {{/each}}
+</div>
+
+<div class="modal" id="editPostModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header text-white" style="background-color: #2a9d8f;">
+                <label id="postId" hidden></label>
+                <h5 class="modal-title">Edit Post</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" style="background-color: #e9d8a6;">
+                <form>
+                    <div class="">
+                        <label for="editTitle" class="form-label fw-bold">Title</label>
+                        <input type="text" class="form-control" id="editTitle">
+                    </div>
+                    <div class="">
+                        <label for="editContent" class="form-label fw-bold">Content</label>
+                        <textarea type="text" class="form-control" id="editContent" rows="5"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class=" modal-footer" style="background-color: #e9d8a6;">
+                <label style="font-size: 0.8rem; font-weight:bolder" id="editalertMsg" hidden></label>
+                <div>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                        style="border: none; font-size: 0.8rem">Close</button>
+                    <button type="button" class="btn btn-primary" id="submitEditedForm"
+                        style="background-color: #2a9d8f; border: none; font-size: 0.8rem">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/js/dashboard.js"></script>
+<script src="/js/addComment.js"></script>
