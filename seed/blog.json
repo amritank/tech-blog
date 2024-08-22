@@ -1,22 +1,22 @@
 [
     {
-        "blogTitle": "Post 1",
-        "blogText": "[POST 1] Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+        "blogTitle": "Why MVC is so important",
+        "blogText": "MVC allows developers to maintain a true seperation of concerns, devising their code between the Model layer for data, the View layer for design, and the Controller layer for application logic.",
         "UserId": 1
     },
     {
-        "blogTitle": "Post 2",
-        "blogText": "[POST 2] Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+        "blogTitle": "Authentication vs Authorization",
+        "blogText": "There is a difference between authentication and authorization. Authentication means confirming your own identity, whereas authorization means being allowed access to the system",
         "UserId": 2
     },
     {
-        "blogTitle": "Post 3",
-        "blogText": "[POST 3] Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+        "blogTitle": "Object-Relational Mapping",
+        "blogText": "An Object-Relational Mapping (ORM) is a programming technique that allows developers to interact with a database using an object-oriented paradigm. Instead of writing raw SQL queries, developers can manipulate database records as if they were objects in their programming language. ORMs automatically handle the translation between the objects in the application and the rows in the database, simplifying database operations and making code more maintainable and easier to understand. Examples of ORMs include Sequelize for Node.js and Hibernate for Java.",
         "UserId": 2
     },
     {
-        "blogTitle": "Post 4",
-        "blogText": "[POST 4] Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+        "blogTitle": "React",
+        "blogText": "React is a popular JavaScript library for building user interfaces, particularly single-page applications. Developed by Facebook, it allows developers to create reusable UI components that manage their own state. React uses a virtual DOM to efficiently update and render components, leading to fast and responsive applications. It's known for its flexibility, simplicity, and component-based architecture, making it a go-to choice for modern web development.",
         "UserId": 3
     }
 ]
