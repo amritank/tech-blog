@@ -1,9 +1,16 @@
 <header>
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark" style="background-color: #2a9d8f;">
+
         <div class="container-fluid">
             <a class="navbar-brand" href="#">The Tech Blog</a>
             <div id="navbarNavDropdown">
                 <ul class="navbar-nav">
+                    {{#unless result.isLoggedIn}}
+                    <li class="nav-item">
+                        <a class="nav-link active" style="color: #e63946; font-weight:bolder" href="/dashboard">Hi,
+                            {{result.userName}}</a>
+                    </li>
+                    {{/unless}}
                     <li class="nav-item">
                         <a class="nav-link" href="/">Home</a>
                     </li>
@@ -11,7 +18,7 @@
                         <a class="nav-link active" aria-current="page" href="/dashboard">Dashboard</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Logout</a>
+                        <a class="nav-link" id="logout-btn" href="#">Logout</a>
                     </li>
                 </ul>
             </div>
@@ -19,6 +26,8 @@
     </nav>
 </header>
 <div class="container" id="BlogDetailsContainer">
+    <button id="newPostBtn" data-user-id={{result.userId}} data-bs-toggle="modal" data-bs-target="#newPostModal"
+        class="btn btn-light mt-3" style="background-color: #2a9d8f; border: none; color: white">New Post</button>
     {{#each result.data as |d|}}
     <div class="card mt-4" style="background-color: #e9d8a6; border: 2px solid black;">
         <div class="card-header  text-white" style="background-color: #2a9d8f;">
@@ -93,7 +102,7 @@
                 <div>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
                         style="border: none; font-size: 0.8rem">Close</button>
-                    <button type="button" class="btn btn-primary" id="submitEditedForm"
+                    <button type="button" class="btn btn-primary" id="submitEditedForm" data-user-id="{{result.userId}}"
                         style="background-color: #2a9d8f; border: none; font-size: 0.8rem">Save changes</button>
                 </div>
             </div>
@@ -101,5 +110,38 @@
     </div>
 </div>
 
+<div class="modal" id="newPostModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header text-white" style="background-color: #2a9d8f;">
+                <label id="userId" hidden></label>
+                <h5 class="modal-title">New Post</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" style="background-color: #e9d8a6;">
+                <form>
+                    <div class="">
+                        <label for="newTitle" class="form-label fw-bold">Title</label>
+                        <input type="text" class="form-control" id="newTitle">
+                    </div>
+                    <div class="">
+                        <label for="newContent" class="form-label fw-bold">Content</label>
+                        <textarea type="text" class="form-control" id="newContent" rows="5"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class=" modal-footer" style="background-color: #e9d8a6;">
+                <label style="font-size: 0.8rem; font-weight:bolder" id="newpostalertMsg" hidden></label>
+                <div>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                        style="border: none; font-size: 0.8rem">Close</button>
+                    <button type="button" class="btn btn-primary" data-user-id={{result.userId}} id="submitNewForm"
+                        style="background-color: #2a9d8f; border: none; font-size: 0.8rem">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <script src="/js/dashboard.js"></script>
 <script src="/js/addComment.js"></script>
+<script src="/js/logout.js"></script>

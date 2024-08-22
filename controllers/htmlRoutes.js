@@ -7,9 +7,14 @@ router.get("/", (req, res) => {
 
 // TODO: add middlewear for auth
 router.get("/homepage", async (req, res) => {
+    // if (!req.session.loggedIn) {
+    //     return res.redirect("/login");
+    // }
+
     let returnData;
-    let is_logged_in = req.session.loggedIn; //TODO: Set this based on if session is active 
-    let user_id = req.session.user.id; // TODO: fetch from session
+    let is_logged_in = req.session.loggedIn;
+    let user_id = req.session.user?.id;
+    let uname = req.session.user?.username;
     try {
         const blogData = await Blog.findAll({
             include: [
@@ -18,8 +23,10 @@ router.get("/homepage", async (req, res) => {
                     model: Comment,
                     include: [
                         { model: User }
-                    ]
-                }
+                    ],
+                    separate: true,
+                    order: [['createdAt', 'DESC']]
+                },
             ],
             order: [['createdAt', 'DESC']]
         });
@@ -73,15 +80,19 @@ router.get("/homepage", async (req, res) => {
     console.log("Processed data that will be rendered: ", processedata);
     returnData.data = processedata;
     returnData.isLoggedIn = is_logged_in;
+    returnData.userName = uname;
     console.log(returnData);
     res.render('home', { result: returnData });
 });
 
-// TODO: add middlewear for auth
 router.get("/dashboard", async (req, res) => {
-    // TODO: If user not logged in redirect to the login page
+    if (!req.session.loggedIn) {
+        return res.redirect("/login");
+    }
     let returnData;
-    let user_id = 2; //TODO: fetch this from the session object
+    console.log(req.session);
+    let user_id = req.session.user?.id;
+    let uname = req.session.user?.username;
     try {
         const blogData = await Blog.findAll({
             include: [
@@ -90,7 +101,9 @@ router.get("/dashboard", async (req, res) => {
                     model: Comment,
                     include: [
                         { model: User }
-                    ]
+                    ],
+                    separate: true,
+                    order: [['createdAt', 'DESC']]
                 }
             ],
             order: [['createdAt', 'DESC']],
@@ -98,7 +111,7 @@ router.get("/dashboard", async (req, res) => {
                 UserId: user_id
             }
         });
-        console.log("findall() blog data: ", blogData);
+        console.log("DB findall() blog data: ", blogData);
 
         if (blogData.length === 0) {
             returnData = {
@@ -145,6 +158,8 @@ router.get("/dashboard", async (req, res) => {
 
     console.log("Return data being passed to render dashboard: ");
     returnData.data = processedata;
+    returnData.userId = user_id;
+    returnData.userName = uname;
     console.log(returnData);
     res.render('dashboard', { result: returnData });
 });

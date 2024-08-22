@@ -11,7 +11,7 @@ const { User } = require('./models');
 const app = new express();
 
 const sess = {
-    sectet: process.env.SESSION_SECRET,
+    secret: process.env.SESSION_SECRET,
     cookie: {
         maxAge: 1000 * 600
     },

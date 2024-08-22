@@ -1,23 +1,43 @@
-<div class="flex">
-    <div>
-        <h2>Login</h2>
+<header>
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark" style="background-color: #2a9d8f;">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">The Tech Blog</a>
+            <div id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link " href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/dashboard">Dashboard</a>
+                    </li>
+                    {{#unless result.isLoggedIn}}
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/login">Login</a>
+                    </li>
+                    {{/unless}}
+                    <li class="nav-item">
+                        <a class="nav-link" id="logout-btn" href="#">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+<div id="parentContainer">
+    <div id="mainContainer">
         <form action="" id="login-form">
-            <label for="login-username">username:</label>
+            <label for="login-username">Username:</label>
             <input type="text" id="login-username" />
-            <label for="login-password">password:</label>
-            <input type="password" id="login-password" />
-            <button>Login</button>
-        </form>
-    </div>
-    <div>
-        <h2>Signup</h2>
-        <form action="" id="signup-form">
-            <label for="signup-username">username:</label>
-            <input type="text" id="signup-username" />
-            <label for="signup-password">password:</label>
-            <input type="password" id="signup-password" />
-            <button>Signup</button>
+            <div>
+                <label for="login-password">Password:</label>
+                <input type="password" id="login-password" />
+            </div>
+            <div>
+                <button id="loginBtn">Login</button>
+                <button id="signupBtn">Signup</button>
+            </div>
         </form>
     </div>
 </div>
 <script src="/js/auth.js"></script>
+<link rel="stylesheet" href="/css/style.css">

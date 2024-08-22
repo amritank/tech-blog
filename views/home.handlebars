@@ -4,6 +4,12 @@
             <a class="navbar-brand" href="#">The Tech Blog</a>
             <div id="navbarNavDropdown">
                 <ul class="navbar-nav">
+                    {{#if result.isLoggedIn}}
+                    <li class="nav-item">
+                        <a class="nav-link active" style="color: #e63946; font-weight:bolder" href="/dashboard">Hi,
+                            {{result.userName}}</a>
+                    </li>
+                    {{/if}}
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="/">Home</a>
                     </li>
@@ -12,11 +18,11 @@
                     </li>
                     {{#unless result.isLoggedIn}}
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Login</a>
+                        <a class="nav-link" href="/login">Login</a>
                     </li>
                     {{/unless}}
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Logout</a>
+                        <a class="nav-link" id="logout-btn" href="#">Logout</a>
                     </li>
                 </ul>
             </div>
@@ -73,3 +79,4 @@
     {{/each}}
 </div>
 <script src="/js/addComment.js"></script>
+<script src="/js/logout.js"></script>
