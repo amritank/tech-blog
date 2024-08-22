@@ -24,6 +24,7 @@ Run ```bash node server.js```
 The project referred to the [randomize-it](https://github.com/Rufasa85/randomize-it) repo for implementing the authentication logic.
 
 ## Web link
+https://tech-blog-nq8d.onrender.com
 
 ## License
 This project is licensed under the MIT License license. Visit [LICENSE](https://www.tldrlegal.com/license/mit-license) for details.
