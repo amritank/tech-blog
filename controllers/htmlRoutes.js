@@ -179,6 +179,23 @@ router.post("/webhook", async (req, res) => {
     console.log(event.type);
     // Handle the event
     switch (event.type) {
+        case 'checkout.session.completed':
+            console.log("Amrita -- checkout session received");
+            const cpaymentIntent = event.data.object;
+            const ccharityName = cpaymentIntent.metadata.charity;
+            console.log("AMRITA Charity name: " + ccharityName);
+            if (ccharityName === "X") {
+                console.log("AMRITA Updating charity X's wallet");
+            } else if (ccharityName === "Y") {
+                console.log("AMRITA Updating charity Y's wallet");
+            } else {
+                console.log("unknown");
+            }
+            console.log("Amrita -- checkout session completed end");
+
+            // Then define and call a method to handle the successful payment intent.
+            // handlePaymentIntentSucceeded(paymentIntent);
+            break;
         case 'payment_intent.succeeded':
             const paymentIntent = event.data.object;
             const charityName = paymentIntent.metadata.charity;
